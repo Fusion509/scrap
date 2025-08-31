@@ -10,13 +10,7 @@ import os
 BASE_URL = "https://placement.iitbhu.ac.in"
 LISTING_URL = f"{BASE_URL}/forum/c/notice-board/2025-26/"
 
-# Load session cookie from environment variable
-import os
-
-# Load session cookie from environment variable
-
-# Use st.secrets for Streamlit Cloud
-SESSION_COOKIE = st.secrets["IITBHU_SESSION"]
+SESSION_COOKIE = st.secrets.get("IITBHU_SESSION") or os.getenv("IITBHU_SESSION")
 
 if not SESSION_COOKIE:
     st.error("⚠️ SESSION cookie not set. Please configure IITBHU_SESSION in Secrets.")
