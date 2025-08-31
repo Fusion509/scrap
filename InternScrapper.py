@@ -93,9 +93,8 @@ def scrape(mode="ppo", delay=0.5, max_pages=100):
             soup = fetch_page(session, page_url)
 
             rows = soup.select("tr.topic-row")
-            if rows:
-                st.info(f"🌐 Scraping page {page} ...")
-            else:
+            if not rows:  # End of available pages
+                st.success(f"✅ Stopped at page {page} (no more data).")
                 break
 
             for row in rows:
