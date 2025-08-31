@@ -14,13 +14,16 @@ LISTING_URL = f"{BASE_URL}/forum/c/notice-board/2025-26/"
 import os
 
 # Load session cookie from environment variable
-SESSION_COOKIE = os.getenv("IITBHU_SESSION")
+
+# Use st.secrets for Streamlit Cloud
+SESSION_COOKIE = st.secrets["IITBHU_SESSION"]
 
 if not SESSION_COOKIE:
-    st.error("⚠️ SESSION cookie not set. Please configure environment variable IITBHU_SESSION.")
+    st.error("⚠️ SESSION cookie not set. Please configure IITBHU_SESSION in Secrets.")
     st.stop()
 
 cookies = {"sessionid": SESSION_COOKIE}
+
 
 ROLL_PATTERN = re.compile(r"\b\d{8}\b")  # IIT BHU roll numbers
 
